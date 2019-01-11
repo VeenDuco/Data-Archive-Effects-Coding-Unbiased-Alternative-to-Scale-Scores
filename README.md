@@ -1,18 +1,10 @@
----
-title: "Data Archive Explanation"
-author: "Duco Veen"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## title: "Data Archive Explanation"
 
 This data archive contains all necessary files to replicate the study for the manuscript ”Effects Coding as Unbiased Alternative to Scale Scores”.
 
 All files and documents are archived and described by [Duco Veen](www.ducoveen.com). 
 
-## Key File Descriptions
+### Key File Descriptions
 
 1. [Simulation_function_2factor.R](https://github.com/VeenDuco/Data-Archive-Effects-Coding-Unbiased-Alternative-to-Scale-Scores/blob/master/Simulation_function_2factor.R) R script that contains a function to generate data according to the two factor model with 3 manifest variables each. 
 2. [simulation1_2factor.R](https://github.com/VeenDuco/Data-Archive-Effects-Coding-Unbiased-Alternative-to-Scale-Scores/blob/master/simulation1_2factor.R) R script that carries out simulation study one and produces Figures 4 and 5 and an additional figure that is the same as figure 5 but for factor 2 instead of factor 1. 
