@@ -1,4 +1,4 @@
-## title: "Data Archive Explanation"
+## Data Archive Explanation
 
 This data archive contains all necessary files to replicate the study for the manuscript ”Effects Coding as Unbiased Alternative to Scale Scores”.
 
