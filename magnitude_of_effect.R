@@ -48,7 +48,7 @@ mean(test.matrix[7, ]) / sd(test.matrix[13, ])
 
 
 # Bias is simulation 1
-#pdf("Figures/magnitude_of_bias.pdf",width=11,height=8.5)
+pdf("Figures/magnitude_of_bias.pdf",width=11,height=8.5)
 par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1)
 
 ### bias variance factor f1
@@ -142,3 +142,84 @@ abline(h=0,lty=2,col="gray") ## add 0 line
 add_legend("topright", legend=c("Effects Coding","Average Scores"), lty=c(1,1), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=1.5,lwd=2)
+
+dev.off()
+
+
+
+# zoomed in plot - relative (mean) bias
+
+#### zoomed in plots on N(0,1) N(0,2) N(0,4) and N(0,8)
+pdf("Figures/sim1_2factor_zoomf1_magnitude.pdf",width=11,height=8.5)
+par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1, cex.sub=1.3,
+    mar = c(7, 4, 7, 2))
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 1 (%)",ylab="Bias factor variance Factor 1 (%)",
+     bty="n",main="Residual variances N(0,1)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[6]][1,] / tot_results2[[6]][11, ]) * 100 ,
+       (tot_results2[[6]][5,] / tot_results2[[6]][13, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[6]][3,] / tot_results2[[6]][11, ]) * 100 ,
+       (tot_results2[[6]][7,] / tot_results2[[6]][13, ]) * 100 ,pch=4, col = "blue")
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 1 (%)",ylab="Bias factor variance Factor 1 (%)",
+     bty="n",main="Residual variances N(0,2)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[11]][1,] / tot_results2[[11]][11, ]) * 100 ,
+       (tot_results2[[11]][5,] / tot_results2[[11]][13, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[11]][3,] / tot_results2[[11]][11, ]) * 100 ,
+       (tot_results2[[11]][7,] / tot_results2[[11]][13, ]) * 100 ,pch=4, col = "blue")
+
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 1 (%)",ylab="Bias factor variance Factor 1 (%)",
+     bty="n",main="Residual variances N(0,4)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[26]][1,] / tot_results2[[26]][11, ]) * 100 ,
+       (tot_results2[[26]][5,] / tot_results2[[26]][13, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[26]][3,] / tot_results2[[26]][11, ]) * 100 ,
+       (tot_results2[[26]][7,] / tot_results2[[26]][13, ]) * 100 ,pch=4, col = "blue")
+
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 1 (%)",ylab="Bias factor variance Factor 1 (%)",
+     bty="n",main="Residual variances N(0,8)")#,
+    # sub = expression(paste(italic("note"),
+                          # ": Effect size Bias defined as mean bias / sd(true variance factor 1)"),
+                      # sep = ""))
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[46]][1,] / tot_results2[[46]][11, ]) * 100 ,
+       (tot_results2[[46]][5,] / tot_results2[[46]][13, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[46]][3,] / tot_results2[[46]][11, ]) * 100 ,
+       (tot_results2[[46]][7,] / tot_results2[[46]][13, ]) * 100 ,pch=4, col = "blue")
+
+
+
+add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4),
+           col=c("red", "blue"),
+           horiz=TRUE, bty='n', cex=1.5)
+
+
+add_legend("bottomleft", 
+           legend = expression(paste(italic("note"),
+                                  ": Bias defined as (Absolute bias / True variance) * 100"),
+                            sep = ""),
+           horiz=TRUE, bty='n', cex=1)
+
+dev.off()
+
+
+
