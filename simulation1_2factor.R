@@ -99,7 +99,7 @@ for(ii in 1:length(tot_results2)){
 abline(h=0,lty=2,col="gray") ## add 0 line
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), lty=c(1,1), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), lty=c(1,1), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=1.5,lwd=2)
 ## add legend
@@ -171,7 +171,7 @@ points(tot_results2[[46]][1,],tot_results2[[46]][5,],col="red",pch=3)
 points(tot_results2[[46]][3,],tot_results2[[46]][7,],col="blue",pch=4)
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=2)
 
@@ -222,7 +222,7 @@ points(tot_results2[[46]][2,],tot_results2[[46]][6,],col="red",pch=3)
 points(tot_results2[[46]][4,],tot_results2[[46]][8,],col="blue",pch=4)
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=2)
 

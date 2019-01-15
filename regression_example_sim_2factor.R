@@ -1,6 +1,20 @@
 library(lavaan)
 library(plotly)
 library(RColorBrewer)
+library(ggplot2)
+library(dplyr)
+
+# define functions
+add_legend <- function(...) {
+  opar <- par(fig=c(0, 1, 0, 1), oma=c(0, 0, 0, 0), 
+              mar=c(0, 0, 0, 0), new=TRUE)
+  on.exit(par(opar))
+  plot(0, 0, type='n', bty='n', xaxt='n', yaxt='n')
+  legend(...)
+}
+
+
+
 set.seed(28022017)
 nsim <- 500
 results <- matrix(NA,nrow=21,ncol=nsim)
@@ -180,5 +194,39 @@ p <- plot_ly(showscale = F) %>%
 
 p
 
+pdf("Figures/sim2_regression_estimates.pdf",width=11,height=8.5)
+par(mfrow=c(1,3),cex.lab=1.3, cex.axis=1.1, cex.main=2,
+    mar = c(7, 4, 7, 2))
+plot(NA,NA,xlim=c(2, 13), ylim=c(2, 13),
+     xlab= "True factor scores used",
+     ylab="Scale Scoring and Effects Coding estimates used",
+     main = expression(beta[0]),
+     bty="n")
+abline(a=0, b=1, col="gray",lty=2)
 
+#generate plot to set Bias factor scores against bias factor variance
+points(results[15,], results[1,],col="red",pch=3, cex=1.5)
+points(results[15,], results[8,],col="blue",pch=4, cex=1.5)
 
+plot(NA,NA,xlim=c(1, 2), ylim=c(1, 2),
+     xlab= "True factor scores",
+     ylab="Scale Scoring and Effects Coding estimates",
+     main = expression(beta[1]),
+     bty="n")
+abline(a=0, b=1, col="gray",lty=2)
+points(results[17,], results[3,],col="red",pch=3, cex=1.5)
+points(results[17,], results[10,],col="blue",pch=4, cex=1.5)
+
+plot(NA,NA,xlim=c(2, 3), ylim=c(2, 3),
+     xlab= "True factor scores",
+     ylab="Scale Scoring and Effects Coding estimates",
+     main = expression(beta[2]),
+     bty="n")
+abline(a=0, b=1, col="gray",lty=2)
+points(results[19,], results[5,],col="red",pch=3, cex=1.5)
+points(results[19,], results[12,],col="blue",pch=4, cex=1.5)
+
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
+           col=c("red", "blue"),
+           horiz=TRUE, bty='n', cex=1.5)
+dev.off()

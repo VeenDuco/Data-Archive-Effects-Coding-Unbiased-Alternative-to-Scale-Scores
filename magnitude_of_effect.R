@@ -113,12 +113,12 @@ plot(NA,NA,xlim=c(0,10),ylim=c(-3,10),
 for(ii in 1:length(tot_results2)){
   lines(x=c(seq(0,10,by=0.2)[ii]-.01),
         y=c(mean(tot_results2[[ii]][5, ]) / sd(tot_results2[[ii]][13, ])),
-        type="b",col="red")
+        type="b",col="red", pch = 3)
 }
 for(ii in 1:length(tot_results2)){
   lines(x=c(seq(0,10,by=0.2)[ii]+.01),
         y=c(mean(tot_results2[[ii]][7, ]) / sd(tot_results2[[ii]][13, ])),
-        type="b",col="blue")
+        type="b",col="blue", pch = 4)
 }
 abline(h=0,lty=2,col="gray") ## add 0 line
 
@@ -130,17 +130,17 @@ plot(NA,NA,xlim=c(0,10),ylim=c(-3,10),
 for(ii in 1:length(tot_results2)){
   lines(x=c(seq(0,10,by=0.2)[ii]-.01),
         y=c(mean(tot_results2[[ii]][6, ]) / sd(tot_results2[[ii]][14, ])),
-        type="b",col="red")
+        type="b",col="red", pch = 3)
 }
 for(ii in 1:length(tot_results2)){
   lines(x=c(seq(0,10,by=0.2)[ii]+.01),
         y=c(mean(tot_results2[[ii]][8, ]) / sd(tot_results2[[ii]][14, ])),
-        type="b",col="blue")
+        type="b",col="blue", pch = 4)
 }
 abline(h=0,lty=2,col="gray") ## add 0 line
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), lty=c(1,1), 
-           col=c("red", "blue"),
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), lty=c(1,1), 
+           col=c("red", "blue"), pch = c(3,4),
            horiz=TRUE, bty='n', cex=1.5,lwd=2)
 
 dev.off()
@@ -208,7 +208,7 @@ points((tot_results2[[46]][3,] / tot_results2[[46]][11, ]) * 100 ,
 
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4),
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4),
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=1.5)
 
@@ -222,4 +222,74 @@ add_legend("bottomleft",
 dev.off()
 
 
+#### zoomed in plots on N(0,1) N(0,2) N(0,4) and N(0,8)
+pdf("Figures/sim1_2factor_zoomf2_magnitude.pdf",width=11,height=8.5)
+par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1, cex.sub=1.3,
+    mar = c(7, 4, 7, 2))
 
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 2 (%)",ylab="Bias factor variance Factor 2 (%)",
+     bty="n",main="Residual variances N(0,1)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[6]][2,] / tot_results2[[6]][12, ]) * 100 ,
+       (tot_results2[[6]][6,] / tot_results2[[6]][14, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[6]][4,] / tot_results2[[6]][12, ]) * 100 ,
+       (tot_results2[[6]][8,] / tot_results2[[6]][14, ]) * 100 ,pch=4, col = "blue")
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 2 (%)",ylab="Bias factor variance Factor 2 (%)",
+     bty="n",main="Residual variances N(0,2)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[11]][2,] / tot_results2[[11]][12, ]) * 100 ,
+       (tot_results2[[11]][6,] / tot_results2[[11]][14, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[11]][4,] / tot_results2[[11]][12, ]) * 100 ,
+       (tot_results2[[11]][8,] / tot_results2[[11]][14, ]) * 100 ,pch=4, col = "blue")
+
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 2 (%)",ylab="Bias factor variance Factor 2 (%)",
+     bty="n",main="Residual variances N(0,4)")#,
+
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[26]][2,] / tot_results2[[26]][12, ]) * 100 ,
+       (tot_results2[[26]][6,] / tot_results2[[26]][14, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[26]][4,] / tot_results2[[26]][12, ]) * 100 ,
+       (tot_results2[[26]][8,] / tot_results2[[26]][14, ]) * 100 ,pch=4, col = "blue")
+
+
+plot(NA,NA,xlim=c(-10,10), ylim=c(-150,150),
+     xlab= "Bias factor mean Factor 2 (%)",ylab="Bias factor variance Factor 2 (%)",
+     bty="n",main="Residual variances N(0,8)")#,
+# sub = expression(paste(italic("note"),
+# ": Effect size Bias defined as mean bias / sd(true variance Factor 2)"),
+# sep = ""))
+abline(h=0,col="gray",lty=2)
+abline(v=0,col="gray",lty=2)
+#generate plot to set Bias factor scores against bias factor variance
+points((tot_results2[[46]][2,] / tot_results2[[46]][12, ]) * 100 ,
+       (tot_results2[[46]][6,] / tot_results2[[46]][14, ]) * 100 ,col="red",pch=3)
+points((tot_results2[[46]][4,] / tot_results2[[46]][12, ]) * 100 ,
+       (tot_results2[[46]][8,] / tot_results2[[46]][14, ]) * 100 ,pch=4, col = "blue")
+
+
+
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4),
+           col=c("red", "blue"),
+           horiz=TRUE, bty='n', cex=1.5)
+
+
+add_legend("bottomleft", 
+           legend = expression(paste(italic("note"),
+                                     ": Bias defined as (Absolute bias / True variance) * 100"),
+                               sep = ""),
+           horiz=TRUE, bty='n', cex=1)
+
+dev.off()
