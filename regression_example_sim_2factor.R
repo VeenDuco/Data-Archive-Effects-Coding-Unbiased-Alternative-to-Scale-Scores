@@ -11,7 +11,7 @@ n <- 5000
 eta <- c(10,10)
 psi <- c(5,5,1)
 
-covf1f2 <- rnorm(n,0,psi[3])
+covf1f2 <- rnorm(n,0,sqrt(psi[3])) 
 f1 <- rnorm(n,eta[1],sqrt(psi[1])) + covf1f2
 f2 <- rnorm(n,eta[2],sqrt(psi[2])) + covf1f2
 #factor1 and 2
