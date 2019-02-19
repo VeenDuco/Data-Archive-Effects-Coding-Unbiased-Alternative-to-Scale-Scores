@@ -113,14 +113,22 @@ sim_2factor3observed <- function(n=100,eta=c(10,10),psi=c(5,5,0),lambda = c(1,1,
   bias_var_ASf2 <- var(ASf2) - var(f2)
   bias_covar_EC <- out_EC@ParTable$est[which(out_EC@ParTable$label=="v3")] - cov(f1,f2)
   bias_covar_AS <- cov(ASf1,ASf2) - cov(f1,f2)
+  actual_f1     <- mean(f1)
+  actual_f2     <- mean(f2)
+  actual_var_f1 <- var(f1)
+  actual_var_f2 <- var(f2)
+  actual_covar  <- cov(f1,f2)
   
   output <- matrix(c(bias_ECf1,bias_ECf2,bias_ASf1,bias_ASf2,bias_var_ECf1,bias_var_ECf2,
-                     bias_var_ASf1,bias_var_ASf2,bias_covar_EC,bias_covar_AS),nrow=10,
+                     bias_var_ASf1,bias_var_ASf2,bias_covar_EC,bias_covar_AS,
+                     actual_f1, actual_f2, actual_var_f1, actual_var_f2, actual_covar),nrow=15,
                    dimnames=list(c("EC bias factor scores 1","EC bias factor scores 2",
                                    "AS bias factor scores 1","AS bias factor scores 2",
                                    "EC bias factor variance 1","EC bias factor variance 2",
                                    "AS bias factor variance 1","AS bias factor variance 2",
-                                   "Bias cov EC","Bias cov AS"),
+                                   "Bias cov EC","Bias cov AS",
+                                   "actual f1", "actual f2", "actual var f1",
+                                   "actual var f2", "actual covar f1f2"),
                                  c("")))
   
   return(output)

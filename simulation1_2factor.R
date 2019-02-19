@@ -1,7 +1,7 @@
 source("Simulation_function_2factor.R")
 nsim <- 500 ## amount of simulations for each (Sub) condition
 set.seed(22032018) #set seed for reproducibility
-tot_results2 <- lapply(seq(0,10,by=0.2), function(x) matrix(NA, nrow=10, ncol=nsim))
+tot_results2 <- lapply(seq(0,10,by=0.2), function(x) matrix(NA, nrow=15, ncol=nsim))
 #get a list to store the simulation results for nmin in for the varying condions for residual variances
 for(ii in 1:length(tot_results2)){
   #for each list (residual variances)
@@ -9,11 +9,13 @@ for(ii in 1:length(tot_results2)){
     #simulate nsim times the condition given residual variances theta.
     tot_results2[[ii]][,i] <- sim_2factor3observed(eta=c(10,10),psi=c(5,5,1),
                                                    lambda=c(1,1,1,1,1,1),theta=rep(seq(0,10,by=0.2)[ii],6))
-  }}
+  }
+  print(ii)
+  }
 
 warnings_tot_results2 <- warnings()
 
-pdf("sim1_2factors.pdf",width=11,height=8.5)
+pdf("Figures/sim1_2factors.pdf",width=11,height=8.5)
 par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1)
 add_legend <- function(...) {
   opar <- par(fig=c(0, 1, 0, 1), oma=c(0, 0, 0, 0), 
@@ -97,7 +99,7 @@ for(ii in 1:length(tot_results2)){
 abline(h=0,lty=2,col="gray") ## add 0 line
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), lty=c(1,1), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), lty=c(1,1), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=1.5,lwd=2)
 ## add legend
@@ -128,7 +130,7 @@ abline(h=0,lty=2,col="gray") ## add 0 line
 
 
 #### zoomed in plots on N(0,1) N(0,2) N(0,4) and N(0,8)
-pdf("sim1_2factor_zoomf1.pdf",width=11,height=8.5)
+pdf("Figures/sim1_2factor_zoomf1.pdf",width=11,height=8.5)
 par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1, cex.sub=1.3)
 
 plot(NA,NA,xlim=c(-.4,.4), ylim=c(-4.5,4.5),
@@ -169,7 +171,7 @@ points(tot_results2[[46]][1,],tot_results2[[46]][5,],col="red",pch=3)
 points(tot_results2[[46]][3,],tot_results2[[46]][7,],col="blue",pch=4)
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=2)
 
@@ -181,7 +183,7 @@ dev.off()
 
 
 
-pdf("sim1_2factor_zoomf2.pdf",width=11,height=8.5)
+pdf("Figures/sim1_2factor_zoomf2.pdf",width=11,height=8.5)
 par(mfrow=c(2,2))
 
 plot(NA,NA,xlim=c(-.4,.4), ylim=c(-4.5,4.5),
@@ -220,11 +222,11 @@ points(tot_results2[[46]][2,],tot_results2[[46]][6,],col="red",pch=3)
 points(tot_results2[[46]][4,],tot_results2[[46]][8,],col="blue",pch=4)
 
 
-add_legend("topright", legend=c("Effects Coding","Average Scores"), pch=c(3,4), 
+add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
            col=c("red", "blue"),
            horiz=TRUE, bty='n', cex=2)
 
 dev.off()
 
 
-save.image("C:/Users/5507553/surfdrive/PhD werk/Projecten/simulation factor and sum scores/Data Archive/Simulations_EC_AS/Simulation1_2factor.RData")
+save.image("RData/Simulation1_2factor.RData")
