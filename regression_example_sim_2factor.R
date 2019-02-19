@@ -194,10 +194,10 @@ p <- plot_ly(showscale = F) %>%
 
 p
 
-pdf("Figures/sim2_regression_estimates.pdf",width=11,height=8.5)
-par(mfrow=c(1,3),cex.lab=1.3, cex.axis=1.1, cex.main=2,
+pdf("Figures/sim2_regression_estimates.pdf",width=13,height=13)
+par(mfrow=c(2,2),cex.lab=1.3, cex.axis=1.1, cex.main=2,
     mar = c(7, 4, 7, 2))
-plot(NA,NA,xlim=c(2, 13), ylim=c(2, 13),
+plot(NA,NA,xlim=c(1, 13), ylim=c(1, 13),
      xlab= "True factor scores used",
      ylab="Scale Scoring and Effects Coding estimates used",
      main = expression(beta[0]),
@@ -205,8 +205,18 @@ plot(NA,NA,xlim=c(2, 13), ylim=c(2, 13),
 abline(a=0, b=1, col="gray",lty=2)
 
 #generate plot to set Bias factor scores against bias factor variance
+# lines(x = c(3,3), y = c(0,3), col = "black", lty = 3)
+# lines(x = c(3,3), y = c(0, 11.46), col = "black", lty=3)
+# add black point and lines to y axis for mean simulation values EC & SS
+lines(x = c(0,3), y = c(3,3), col = "black", lty = 3)
+lines(x = c(0,3), y = c(11.46, 11.46), col = "black", lty=3)
+lines(x = c(3, 3), y = c(0, 3), col = "black", lty = 3)
+lines(x = c(3, 3), y = c(0, 11.46), col = "black", lty = 3)
 points(results[15,], results[1,],col="red",pch=3, cex=1.5)
 points(results[15,], results[8,],col="blue",pch=4, cex=1.5)
+points(x = 3, y = 3, col = "black", pch = 3, lwd = 4)
+points(x = 3, y = 11.46, col = "black", pch = 4, lwd = 4)
+
 
 plot(NA,NA,xlim=c(1, 2), ylim=c(1, 2),
      xlab= "True factor scores",
@@ -214,8 +224,16 @@ plot(NA,NA,xlim=c(1, 2), ylim=c(1, 2),
      main = expression(beta[1]),
      bty="n")
 abline(a=0, b=1, col="gray",lty=2)
+# add black point and lines to y axis for mean simulation values EC & SS
+lines(x = c(0,1.7), y = c(1.7,1.7), col = "black", lty = 3)
+lines(x = c(0,1.7), y = c(1.4, 1.4), col = "black", lty=3)
+lines(x = c(1.7, 1.7), y = c(0, 1.4), col = "black", lty = 3)
+lines(x = c(1.7, 1.7), y = c(0, 1.7), col = "black", lty = 3)
 points(results[17,], results[3,],col="red",pch=3, cex=1.5)
 points(results[17,], results[10,],col="blue",pch=4, cex=1.5)
+points(x = 1.7, y = 1.7, col = "black", pch = 3, lwd = 4)
+points(x = 1.7, y = 1.4, col = "black", pch = 4, lwd = 4)
+
 
 plot(NA,NA,xlim=c(2, 3), ylim=c(2, 3),
      xlab= "True factor scores",
@@ -223,10 +241,24 @@ plot(NA,NA,xlim=c(2, 3), ylim=c(2, 3),
      main = expression(beta[2]),
      bty="n")
 abline(a=0, b=1, col="gray",lty=2)
+# add black point and lines to y axis for mean simulation values EC & SS
+lines(x = c(0,2.7), y = c(2.7,2.7), col = "black", lty = 3)
+lines(x = c(0,2.7), y = c(2.15, 2.15), col = "black", lty=3)
+lines(x = c(2.7, 2.7), y = c(0, 2.15), col = "black", lty = 3)
+lines(x = c(2.7, 2.7), y = c(0, 2.7), col = "black", lty = 3)
 points(results[19,], results[5,],col="red",pch=3, cex=1.5)
 points(results[19,], results[12,],col="blue",pch=4, cex=1.5)
+points(x = 2.7, y = 2.7, col = "black", pch = 3, lwd = 4)
+points(x = 2.7, y = 2.15, col = "black", pch = 4, lwd = 4)
 
-add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
-           col=c("red", "blue"),
-           horiz=TRUE, bty='n', cex=1.5)
+plot.new()
+# par(xpd=TRUE)
+legend("center", c("Effects Coding","Scale Scoring", "mean Effects Coding", 
+                   "mean Scale Scoring"), pch=c(3,4, 3,4),
+       col=c("red", "blue", "black", "black"),
+       bty='n', cex=2.2)
+
+# add_legend("topright", legend=c("Effects Coding","Scale Scoring"), pch=c(3,4), 
+           # col=c("red", "blue"),
+           # horiz=TRUE, bty='n', cex=1.5)
 dev.off()
